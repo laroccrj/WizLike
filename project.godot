@@ -8,20 +8,33 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Spell",
+"language": "GDScript",
+"path": "res://Scenes/SpellController/Spell/Spell.gd"
+}, {
+"base": "Node2D",
+"class": "SpellController",
+"language": "GDScript",
+"path": "res://Scenes/SpellController/SpellController.gd"
+} ]
 _global_script_class_icons={
-
+"Spell": "",
+"SpellController": ""
 }
 
 [application]
 
 config/name="RougeLike"
-run/main_scene="res://Game.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://Main.tscn"
+config/icon="res://Scenes/Player/icon.png"
 
 [autoload]
 
-Config="*res://Config.gd"
+Config="*res://Singletons/Config.gd"
+Signals="*res://Singletons/Signals.gd"
+GlobalNodes="*res://Singletons/GlobalNodes.gd"
 
 [rendering]
 
