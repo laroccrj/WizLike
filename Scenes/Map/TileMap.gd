@@ -7,7 +7,7 @@ func _ready():
 	_tileset = get_tileset()
 	cell_size.x = Config.grid_size
 	cell_size.y = Config.grid_size
-	spawnRoom(Vector2(0,0), 10, 10)
+	spawnRoom(Vector2(-1,-1), 10, 10)
 		
 func spawnRoom(start, width, height):
 	for x in range(width):
