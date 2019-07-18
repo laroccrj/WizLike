@@ -13,7 +13,7 @@ func _process(delta):
 		move(Vector2.UP)
 	elif Input.is_action_just_pressed('ui_down'):
 		move(Vector2.DOWN)
-	position = _pos * grid_size
+	position = get_formatted_pos() * grid_size
 		
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -32,3 +32,6 @@ func move(dir : Vector2):
 	else:
 		facing = dir
 	Signals.emit("process_turn")
+	
+func get_formatted_pos():
+	return _pos + Vector2.RIGHT + Vector2.DOWN
