@@ -2,6 +2,7 @@ extends Node2D
 
 var grid_size = Config.grid_size
 var facing = Vector2.RIGHT
+var _pos = Vector2.ZERO
 
 func _process(delta):
 	if Input.is_action_just_pressed('ui_right'):
@@ -12,6 +13,7 @@ func _process(delta):
 		move(Vector2.UP)
 	elif Input.is_action_just_pressed('ui_down'):
 		move(Vector2.DOWN)
+	position = _pos * grid_size
 		
 func _input(event):
 	if event is InputEventKey and event.pressed:
@@ -24,7 +26,9 @@ func _input(event):
 
 func move(dir : Vector2):
 	if facing == dir:
-		position += dir * grid_size
+		_pos += dir
+		if GlobalNodes.map.isWall(_pos):
+			_pos -= dir
 	else:
 		facing = dir
 	Signals.emit("process_turn")

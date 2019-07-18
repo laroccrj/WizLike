@@ -2,13 +2,14 @@ class_name MapController extends TileMap
 
 var _tileset
 var pos = Vector2(0,0)
+var _walls = {}
 
 func _ready():
 	GlobalNodes.map = self
 	_tileset = get_tileset()
 	cell_size.x = Config.grid_size
 	cell_size.y = Config.grid_size
-	spawnRoom(Vector2(-1,-1), 10, 10)
+	spawnRoom(Vector2(-2,-2), 10, 10)
 		
 func spawnRoom(start, width, height):
 	for x in range(width):
@@ -28,3 +29,7 @@ func spawnRandomBlock(pos):
 func spawnWall(pos):
 	var tile = "wall"
 	set_cellv(pos, _tileset.find_tile_by_name(tile))
+	_walls[pos] = true
+	
+func isWall(pos):
+	return _walls.has(pos)
